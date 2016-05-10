@@ -1,0 +1,17 @@
+html, body {
+font: normal 25px 'Open Sans', sans-serif;
+line-height: 1.5;
+margin: 0;
+padding: 0;
+height: 100%;
+}
+
+.container {
+padding-bottom: 20px;
+}
+
+.container .iq-questions {
+color: #999;
+text-align: center;
+padding: 20px;
+}

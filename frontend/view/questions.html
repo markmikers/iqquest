@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Questions database</title>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/frontend/css/style.css">
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="iq-questions">
+      IQ Questions
+    </div>
+
+    <table class="table table-bordered table-hover" id="questions_table">
+      <thead>
+        <tr>
+          <th class="col-md-1">Position</th>
+          <th class="col-md-1">Series</th>
+          <th class="col-md-6">Question text</th>
+          <th class="col-md-2">Image</th>
+          <th class="col-md-1">Change</th>
+          <th class="col-md-1">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="questions">
+      
+      </tbody>
+    </table>    
+<!--
+    <div class="row">
+      <div class="col-md-1">Position</div>
+      <div class="col-md-1">Series</div>
+      <div class="col-md-7">Question text</div>
+      <div class="col-md-3">Image</div>
+    </div>
+-->
+  </div>
+  <div>
+    <button id="addQuestion" class="btn button button-success">Add question</button></div>
+</body>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="/frontend/js/questionController.js"></script>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { padding: 3px; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { background: #eee; padding: 5px 10px; }
+      .rate {position: relative; bottom: 0px; right: 0px}
+      #m {border: 1px solid grey;}
+      
+      #progressTimer, #timerPlaceholder {
+      width:95%;
+      height:20px;
+        margin: auto;
+        margin-top: 10px;
+      }
+      
+      #timerPlaceholder {
+        background: #eee;
+        border-radius: 5px 5px 5px 5px;
+      }
+      
+/* style for shading     */
+      html, body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+      
+/*      style for modal window*/
+      .window {
+    width: 300px;
+    height: 200px;
+    line-height: 200px;
+    position: fixed;
+    top: 50%; 
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #f1c40f;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 11; 
+}
+      
+      
+    </style>
+  </head>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#m').focus();
+    $('button').hide();
+  var socket = io();
+  $('form').submit(function(){
+    socket.emit('answer', $('#m').val());
+    $('#m').val('');
+    return false;
+  });
+  socket.on('question', function(msg){
+    $('button').show();
+    $('#messages').empty();
+    $('#messages').append($('<li>').text(msg));
+    $('#timerPlaceholder').hide();
+    $("#progressTimer").progressTimer({
+    timeLimit: 60,
+    baseStyle: 'progress-bar-warning',
+    completeStyle: 'progress-bar-info',
+    onFinish: function() {
+        $('button').hide();
+    }
+    });
+  });
+  });
+</script>
+  <body>
+   <div>
+    <ul id="messages">
+      <li>Place for questions</li>
+    </ul>
+<!--
+    <div class="rate">
+      <form action="" id="like"><button>Like</button></form>
+      <form action="" id="dislike"><button>Dislike</button></form>  
+    </div>
+-->
+   </div>     
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <div id="timerPlaceholder"></div>
+    <div id="progressTimer"></div>
+<!--    <div class="overlay"></div>-->
+    <div class="window">
+      Hello!
+    </div>
+    
+    
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script> 
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script> 
+    <script src="/frontend/js/modules/jquery.progressTimer.js"></script>
+  </body>
+</html>
